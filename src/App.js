@@ -2,6 +2,15 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import firebase from 'firebase/app'
+import firebaseConfig from './config/firebase.config'
+
+import 'firebase/analytics'
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+firebase.analytics();
+
 function App() {
   return (
     <div className="App">
