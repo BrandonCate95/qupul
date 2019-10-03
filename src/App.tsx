@@ -1,6 +1,7 @@
 import React from 'react';
 // import logo from './logo.svg';
 import './App.scss';
+import Button from '@material-ui/core/Button';
 
 import firebase from 'firebase/app'
 import firebaseConfig from './config/firebase.config'
@@ -27,6 +28,9 @@ function App() {
         >
           Learn React
         </a>
+        <Button variant="contained" color="primary">
+          Hello World
+        </Button>
       </header>
     </div>
   );
