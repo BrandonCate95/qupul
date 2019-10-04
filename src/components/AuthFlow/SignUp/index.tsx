@@ -54,9 +54,13 @@ function SignUp(props) {
             >
               <Box display="flex" flexDirection="column" p={3}>
 
-                <Typography variant="h2">
-                  QUPUL
-                </Typography>
+                <Link 
+                  to={ROUTES.HOME.path}
+                >
+                  <Typography variant="h2">
+                    QUPUL
+                  </Typography>
+                </Link>
 
                 <TextField id="username" label="Username" margin="normal"
                   color="primary"

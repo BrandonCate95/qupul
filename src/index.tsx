@@ -24,6 +24,15 @@ const theme = createMuiTheme({
         margin: 6,
       },
     },
+    MuiTextField: {
+      root: {
+        '& .MuiOutlinedInput-root': {
+          '& fieldset': {
+            borderRadius: `50px`,
+          },
+        }
+      } 
+    }
   },
 });
 
