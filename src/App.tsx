@@ -1,38 +1,18 @@
 import React from 'react';
-// import logo from './logo.svg';
 import './App.scss';
-import Button from '@material-ui/core/Button';
 
-import firebase from 'firebase/app'
-import firebaseConfig from './config/firebase.config'
-
-import 'firebase/analytics'
-
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-firebase.analytics();
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import SignIn from './components/AuthFlow/SignIn';
+import SignUp from './components/AuthFlow/SignUp';
+import Home from './components/Home';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        {/* <img src={logo} className="App-logo" alt="logo" /> */}
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <Button variant="contained" color="primary">
-          Hello World
-        </Button>
-      </header>
-    </div>
+    <Router>
+      <Route exact path="/" component={Home} />
+      <Route path="/signin" component={SignIn} />
+      <Route path="/signup" component={SignUp} />
+    </Router>
   );
 }
 
