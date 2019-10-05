@@ -1,8 +1,12 @@
 import React from 'react'
 import { Box, Button, Typography, TextField } from '@material-ui/core'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
+import { compose } from 'recompose'
+
 import SignOut from '../AuthFlow/SignOut'
 import { withAuthentication } from '../../services/Session'
+
+import * as ROUTES from '../../constants/routes'
 
 const INITIAL_STATE = {
   search: ''
@@ -16,6 +20,12 @@ function Home(props) {
     setValues({ ...values, [name]: event.target.value });
   };
 
+  const onSearch = event => {
+    event.preventDefault()
+
+    props.history.push(ROUTES.SEARCH.path)
+  }
+
   return(
     <Box display="flex" flexDirection="column" textAlign="center"
         justifyContent="space-evenly" height="100%" p={2}
@@ -28,13 +38,17 @@ function Home(props) {
         QUPUL
       </Typography>
 
-      <TextField id="search" label="Search" margin="normal"
-        color="primary" variant="outlined"
-        style={{borderRadius: '50px'}}
-        value={values.search}
-        onChange={handleChange('search')}
-      />
-
+      <form
+        onSubmit={onSearch}
+      >
+        <TextField id="search" label="Search" margin="normal"
+          color="primary" variant="outlined"
+          style={{borderRadius: '50px', width: '100%'}}
+          value={values.search}
+          onChange={handleChange('search')}
+        />
+      </form>
+      
       {!props.authUser &&
         <Box display="flex" flexDirection="column">
           <Button 
@@ -61,4 +75,7 @@ function Home(props) {
   )
 }
 
-export default withAuthentication(Home)
+export default compose(
+  withRouter,
+  withAuthentication
+)(Home)
