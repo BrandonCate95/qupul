@@ -1,8 +1,12 @@
 import React from 'react'
 
+import { withRouter } from 'react-router-dom'
+
 import { fade, makeStyles } from '@material-ui/core/styles'
 import { InputBase } from '@material-ui/core'
 import SearchIcon from '@material-ui/icons/Search'
+
+import { search } from './search';
 
 /**
  * @todo -- Convert to styled components or pure scss solution
@@ -50,23 +54,40 @@ const useStyles = makeStyles(theme => ({
     },
   }));
 
-export default function AppBarSearch(){
-  const classes = useStyles({});
+const INITIAL_STATE = {
+  search: ''
+}
+
+function AppBarSearch(props){
+  const classes = useStyles({})
+
+  const [values, setValues] = React.useState(INITIAL_STATE);
+
+  const handleChange = name => event => {
+    setValues({ ...values, [name]: event.target.value });
+  };
 
   return(
-    <div className={classes.search}>
-      <div className={classes.searchIcon}>
-        <SearchIcon />
+    <form
+      onSubmit={(event) => search(event, props.history)}
+    >
+      <div className={classes.search}>
+        <div className={classes.searchIcon}>
+            <SearchIcon />
+        </div>
+        <InputBase
+          placeholder="Search…"
+          value={values.search}
+          onChange={handleChange('search')}
+          classes={{
+            root: classes.inputRoot,
+            input: classes.inputInput,
+          }}
+          inputProps={{ 'aria-label': 'search' }}
+        />
       </div>
-    
-      <InputBase
-        placeholder="Search…"
-        classes={{
-          root: classes.inputRoot,
-          input: classes.inputInput,
-        }}
-        inputProps={{ 'aria-label': 'search' }}
-      />
-    </div>
+    </form>
   )
 }
+
+export default withRouter(AppBarSearch)

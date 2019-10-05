@@ -1,36 +1,33 @@
-import Home from "../../components/Home";
-import { Route } from "../../types/Routes";
-import SignIn from "../../components/AuthFlow/SignIn";
-import SignUp from "../../components/AuthFlow/SignUp";
-import SearchPage from "../../components/SearchPage";
-import DocumentPage from "../../components/DocumentPage";
+import { lazy } from 'react'
+
+import { Route } from "../../types/Routes"
 
 export const HOME: Route = {
     exact: true,
     path: '/',
-    component: Home
+    component: lazy(() => import('../../components/HomePage'))
 }
 
 export const SEARCH: Route = {
     exact: false,
     path: '/search',
-    component: SearchPage
+    component: lazy(() => import('../../components/SearchPage'))
 }
 
 export const DOCUMENT: Route = {
     exact: false,
     path: '/document',
-    component: DocumentPage
+    component: lazy(() => import('../../components/DocumentPage'))
 }
 
 export const SIGNIN: Route = {
     exact: false,
     path: '/signin',
-    component: SignIn
+    component: lazy(() => import('../../components/AuthFlow/SignIn'))
 }
 
 export const SIGNUP: Route = {
     exact: false,
     path: '/signup',
-    component: SignUp
+    component: lazy(() => import('../../components/AuthFlow/SignUp'))
 }
