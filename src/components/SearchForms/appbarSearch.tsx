@@ -1,10 +1,8 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import { fade, makeStyles } from '@material-ui/core/styles'
-import { AppBar, Toolbar, IconButton, InputBase } from '@material-ui/core'
-import SearchIcon from '@material-ui/icons/Search'
 
-import * as ROUTES from '../../../constants/routes'
+import { fade, makeStyles } from '@material-ui/core/styles'
+import { InputBase } from '@material-ui/core'
+import SearchIcon from '@material-ui/icons/Search'
 
 /**
  * @todo -- Convert to styled components or pure scss solution
@@ -51,36 +49,24 @@ const useStyles = makeStyles(theme => ({
       },
     },
   }));
-  
 
-function DefaultTopAppBar() {
+export default function AppBarSearch(){
   const classes = useStyles({});
 
   return(
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton edge="start" color="inherit"
-            to={ROUTES.HOME.path}
-            component={Link}
-          >
-            Q
-          </IconButton>
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </div>
-        </Toolbar>
-      </AppBar>
+    <div className={classes.search}>
+      <div className={classes.searchIcon}>
+        <SearchIcon />
+      </div>
+    
+      <InputBase
+        placeholder="Search…"
+        classes={{
+          root: classes.inputRoot,
+          input: classes.inputInput,
+        }}
+        inputProps={{ 'aria-label': 'search' }}
+      />
+    </div>
   )
 }
-
-export default DefaultTopAppBar
