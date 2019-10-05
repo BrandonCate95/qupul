@@ -1,6 +1,6 @@
 {
   "database": {
-    "rules": "src/config/database.config.js"
+    "rules": "src/config/database.config.json"
   },
   "hosting": {
     "public": "build",
