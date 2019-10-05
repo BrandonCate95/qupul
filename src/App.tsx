@@ -2,22 +2,22 @@ import React from 'react';
 import './App.scss';
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import SignIn from './components/AuthFlow/SignIn';
-import SignUp from './components/AuthFlow/SignUp';
-import Home from './components/Home';
 import SwitchWithSlide from './components/Slider/SwitchWithSlide';
 
 import * as ROUTES from './constants/routes'
-import SearchPage from './components/SearchPage';
 
 function App() {
   return (
     <Router>
       <SwitchWithSlide>
-        <Route exact path="/" component={Home} />
-        <Route path="/search" component={SearchPage} />
-        <Route path="/signin" component={SignIn} />
-        <Route path="/signup" component={SignUp} />
+        {Object.keys(ROUTES).map(key => 
+          <Route 
+            key={key}
+            exact={ROUTES[key].exact}
+            path={ROUTES[key].path}
+            component={ROUTES[key].component} 
+          /> 
+        )}
       </SwitchWithSlide>
     </Router>
   );
