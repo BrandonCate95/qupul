@@ -20,6 +20,12 @@ export const DOCUMENT: Route = {
     component: lazy(() => import('../../components/DocumentPage'))
 }
 
+export const ADD: Route = {
+    exact: false,
+    path: '/add',
+    component: lazy(() => import('../../components/AddPage'))
+}
+
 export const SIGNIN: Route = {
     exact: false,
     path: '/signin',
