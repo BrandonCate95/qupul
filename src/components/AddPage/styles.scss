@@ -1,11 +1,55 @@
-.demo-editor {
-  margin: 0 8px;
+.toolbar-button-container {
+  fill: gray;
+  display: flex;
+  align-items: center;
 }
 
-.rdw-inline-wrapper, .rdw-option-wrapper, .rdw-fontsize-wrapper, .rdw-fontsize-dropdown, .rdw-text-align-wrapper, .rdw-link-wrapper {
-  order: 2;
+.toolbar-button-container.active {
+  fill: black;
 }
 
-.rdw-editor-toolbar {
-  justify-content: space-evenly;
+.MuiSvgIcon-root {
+  fill: inherit !important;
+}
+
+.text-align-left {
+  div {
+    text-align: left !important;
+  }
+}
+
+.text-align-center {
+  div {
+    text-align: center !important;
+  }
+}
+
+.text-align-right {
+  div {
+    text-align: right !important;
+  }
+}
+
+.font-size-10 {
+  font-size: 10px;
+}
+
+.font-size-12 {
+  font-size: 12px;
+}
+
+.font-size-14 {
+  font-size: 14px;
+}
+
+.font-size-18 {
+  font-size: 18px;
+}
+
+.font-size-24 {
+  font-size: 24px;
+}
+
+.font-size-30 {
+  font-size: 30px;
 }

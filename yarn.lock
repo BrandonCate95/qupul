@@ -1565,6 +1565,14 @@
     "@types/long" "*"
     "@types/node" "*"
 
+"@types/draft-js@^0.10.36":
+  version "0.10.36"
+  resolved "https://registry.yarnpkg.com/@types/draft-js/-/draft-js-0.10.36.tgz#0470f54f58480b93ce05f5ad409837883d2c2c9c"
+  integrity sha512-BBmmQFyDrimi0xNDWI51lx87hc11gotG9+AZUgjbObiW4lQ+ODSvrlDf+LWjkgCquNKmnGPBfRbRXvxpQ7PVmg==
+  dependencies:
+    "@types/react" "*"
+    immutable "~3.7.4"
+
 "@types/eslint-visitor-keys@^1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@types/eslint-visitor-keys/-/eslint-visitor-keys-1.0.0.tgz#1ee30d79544ca84d68d4b3cdb0af4f205663dd2d"
@@ -3814,7 +3822,7 @@ draft-js@^0.11.1:
     immutable "~3.7.4"
     object-assign "^4.1.0"
 
-draftjs-utils@^0.9.3:
+draftjs-utils@^0.9.3, draftjs-utils@^0.9.4:
   version "0.9.4"
   resolved "https://registry.yarnpkg.com/draftjs-utils/-/draftjs-utils-0.9.4.tgz#976c61aa133dbbbfedd65ae1dd6627d7b98c6f08"
   integrity sha512-KYjABSbGpJrwrwmxVj5UhfV37MF/p0QRxKIyL+/+QOaJ8J9z1FBKxkblThbpR0nJi9lxPQWGg+gh+v0dAsSCCg==
@@ -5241,6 +5249,11 @@ immer@1.10.0:
   version "1.10.0"
   resolved "https://registry.yarnpkg.com/immer/-/immer-1.10.0.tgz#bad67605ba9c810275d91e1c2a47d4582e98286d"
   integrity sha512-O3sR1/opvCDGLEVcvrGTMtLac8GJ5IwZC4puPrLuRj3l7ICKvkmA0vGuU9OW8mV9WIBRnaxp5GJh9IEAaNOoYg==
+
+immutable@^4.0.0-rc.12:
+  version "4.0.0-rc.12"
+  resolved "https://registry.yarnpkg.com/immutable/-/immutable-4.0.0-rc.12.tgz#ca59a7e4c19ae8d9bf74a97bdf0f6e2f2a5d0217"
+  integrity sha512-0M2XxkZLx/mi3t8NVwIm1g8nHoEmM9p9UBl/G9k4+hm0kBgOVdMV/B3CY5dQ8qG8qc80NN4gDV4HQv6FTJ5q7A==
 
 immutable@~3.7.4:
   version "3.7.6"
