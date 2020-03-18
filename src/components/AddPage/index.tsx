@@ -12,78 +12,132 @@ import InlineStyleButton from '../Editors/Custom/inlineStyleButton'
 import BlockStyleButton from '../Editors/Custom/blockStyleButton'
 import EditorFontSizeSelect, { styleMap } from '../Editors/Custom/editorFontSizeSelect'
 
-/**
- * Start --> config for block style buttons
- */
-const blockRenderMap = Map({
-  'text-align-left': {
-    element: 'div'
+interface BlockGroup {
+  [key: string]: {
+    element: string,
+    style: React.CSSProperties
+  }
+}
+
+const customBlocks: Array<BlockGroup> = [
+  {
+    'text-align-left': {
+      element: 'div',
+      style: {
+        textAlign: 'left'
+      }
+    },
+    'text-align-center': {
+      element: 'div',
+      style: {
+        textAlign: 'center'
+      }
+    },
+    'text-align-right': {
+      element: 'div',
+      style: {
+        textAlign: 'right'
+      }
+    }
   },
-  'text-align-center': {
-    element: 'div'
-  },
-  'text-align-right': {
-    element: 'div'
-  },
-  'font-size-10': {
-    element: 'div'
-  },
-  'font-size-12': {
-    element: 'div'
-  },
-  'font-size-14': {
-    element: 'div'
-  },
-  'font-size-18': {
-    element: 'div'
-  },
-  'font-size-24': {
-    element: 'div'
-  },
-  'font-size-30': {
-    element: 'div'
-  },
-});
+  {
+    'font-size-10': {
+      element: 'div',
+      style: {
+        fontSize: '10px'
+      }
+    },
+    'font-size-12': {
+      element: 'div',
+      style: {
+        fontSize: '12px'
+      }
+    },
+    'font-size-14': {
+      element: 'div',
+      style: {
+        fontSize: '14px'
+      }
+    },
+    'font-size-18': {
+      element: 'div',
+      style: {
+        fontSize: '18px'
+      }
+    },
+    'font-size-24': {
+      element: 'div',
+      style: {
+        fontSize: '24px'
+      }
+    },
+    'font-size-30': {
+      element: 'div',
+      style: {
+        fontSize: '30px'
+      }
+    },
+  }
+]
+
+const BlockWrapper = (props) => {
+  let elements = React.Children.toArray(props.children)
+  return (
+    <React.Fragment>
+      {React.cloneElement(elements[0], { style: props.style })}
+    </React.Fragment>
+  )
+}
+
+function createBlockRenderMap(blocks: Array<BlockGroup>){
+  const customBlockRenderMap = {}
+
+  blocks.forEach(blockGroup => {
+    
+    Object.keys(blockGroup).forEach(blockName => {
+
+        customBlockRenderMap[blockName] = {
+          element: blockGroup[blockName].element,
+          wrapper: <BlockWrapper style={blockGroup[blockName].style} />
+        }
+
+    })
+
+  })
+
+  return customBlockRenderMap
+}
+
+const blockRenderMap = Map( createBlockRenderMap(customBlocks) )
+
 // Include 'paragraph' as a valid block and updated the unstyled element but
 // keep support for other draft default block types
-const extendedBlockRenderMap = DefaultDraftBlockRenderMap.merge(blockRenderMap);
+const extendedBlockRenderMap = DefaultDraftBlockRenderMap.merge(blockRenderMap)
 
-function myBlockStyleFn(contentBlock) {
-  const type = contentBlock.getType()
-
-  if (type === 'text-align-left') {
-    return 'text-align-left'
-  } 
-  if (type === 'text-align-center') {
-    return 'text-align-center'
-  } 
-  if (type === 'text-align-right') {
-    return 'text-align-right'
-  }
-
-  if (type === 'font-size-10') {
-    return 'font-size-10'
-  }
-  if (type === 'font-size-12') {
-    return 'font-size-12'
-  }
-  if (type === 'font-size-14') {
-    return 'font-size-14'
-  }
-  if (type === 'font-size-18') {
-    return 'font-size-18'
-  }
-  if (type === 'font-size-24') {
-    return 'font-size-24'
-  }
-  if (type === 'font-size-30') {
-    return 'font-size-30'
-  }
-  
-}
 /**
- * End --> config for block style buttons
+ * 
+ * @param contentBlock
  */
+function myBlockStyleFn(contentBlock) {
+  const type = contentBlock.getType() as string
+  var fullBlockClassName = ''
+
+  customBlocks.forEach(classGroup => {
+    const classNames = Object.keys( classGroup )
+    
+    for(var i = 0; i < classNames.length; i++){
+
+      if( type.search( classNames[i] ) > -1 ){
+        fullBlockClassName.concat(classNames[i] + ' ')
+        break // break out of loop if one is found --> only want one class added per classGroup
+      }
+
+    }
+
+  }) 
+    
+  return fullBlockClassName  
+}
 
 function AddPage() {
   const [editorState, setEditorState] = React.useState(
@@ -153,6 +207,9 @@ function AddPage() {
         blockRenderMap={extendedBlockRenderMap}
         placeholder={'type here...'}
       />
+
+      <div style={{}}>
+      </div>
 
       
     </Box>
